@@ -1,21 +1,32 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  margin-top: 50px;
+  margin-top: 3.1rem;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 5rem;
+
+  @media(max-width: 850px){
+    flex-direction: column;
+    padding: 1rem;
+  }
 `;
 
 export const Cover = styled.div`
   img {
     border-radius: 0.8rem;
-    width: 250px;
+    width: 15.6rem;
     height: auto;
     margin: 1.2rem 0;
   }
+  @media(max-width: 850px){
+    img {
+      width: 10rem;
+    }
+  }
+
 `;
 
 export const Info = styled.div`
@@ -27,6 +38,7 @@ export const Info = styled.div`
   background: rgba(0, 0, 0, 0.7);
   border-radius: 0.8rem;
   color: white;
+  background-color: #696969;
 
   h2 {
     font-size: 2rem;
@@ -36,6 +48,19 @@ export const Info = styled.div`
     font-size: 1rem;
     margin: 0.8rem 0;
   }
+  @media(max-width: 850px) {
+    padding: 0.5rem;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+    p {
+      font-size: 0.8rem;
+    }
+
+
+  }
+
 `;
 
 export const Movie = styled.div`

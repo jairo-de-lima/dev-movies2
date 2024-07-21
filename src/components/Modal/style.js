@@ -19,12 +19,16 @@ export const Container = styled.div`
     align-items: center;
     position: fixed;
     padding: 2rem;
-    max-width: 1200px;
+    max-width: 75rem;
     border-radius: 1rem;
 
     iframe {
         border: none;
     }
+    @media(max-width: 850px){
+        width: 100%;
+        padding: 1rem;
+  }
 
 `
 export const Close = styled.button`

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Image = styled.div`
-  min-height: 100px;
+  min-height: 6.25rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,6 +18,12 @@ export const Image = styled.div`
   img {
     width: 25%;
   }
+  @media(max-width: 850px) {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 0.5rem;
+    gap: 2rem;
+  }
   
 `;
 export const Navbar = styled.ul`
@@ -26,6 +32,10 @@ export const Navbar = styled.ul`
   gap: 1rem;
   align-items: center;
   justify-content: center;
+
+  @media(max-width: 850px) {
+    gap: 0.5rem;
+  }
 `;
 export const Li = styled.li`
   font-weight: bold;
@@ -41,10 +51,10 @@ export const Li = styled.li`
   &::after {
     content: "";
     width: ${(props) => (props.isActive ? "100%" : 0)};
-    height: 3px;
+    height: 0.18rem;
     background-color: #189b20;
     position: absolute;
-    bottom: -10px;
+    bottom: -0.62rem;
     left: 50%;
     transform: translateX(-50%);
     transition: width 0.5s ease-in-out;
@@ -52,5 +62,12 @@ export const Li = styled.li`
 
   &:hover::after {
     width: 100%;
+  }
+  @media(max-width: 850px){
+    a {
+      font-size: 1rem;
+    }
+    
+
   }
 `;

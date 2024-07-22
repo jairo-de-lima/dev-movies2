@@ -16,13 +16,14 @@ export const Image = styled.div`
     border-radius: 1rem;
 
   img {
-    width: 25%;
+    width: 35%;
   }
   @media(max-width: 850px) {
     display: flex;
-    justify-content: flex-start;
+    /* justify-content: flex-start; */
     padding: 0 0.5rem;
     gap: 2rem;
+    min-height: 4rem;
   }
   
 `;

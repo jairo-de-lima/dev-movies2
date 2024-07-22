@@ -24,6 +24,7 @@ export const Cover = styled.div`
   @media(max-width: 850px){
     img {
       width: 10rem;
+      overflow: hidden;
     }
   }
 
@@ -57,8 +58,6 @@ export const Info = styled.div`
     p {
       font-size: 0.8rem;
     }
-
-
   }
 
 `;
@@ -70,4 +69,8 @@ justify-content: center;
 align-items: center;
 color: #fff;
 margin: 1rem;
+
+@media (max-width: 850px) {
+  margin: 0;
+}
 `

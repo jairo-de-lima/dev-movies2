@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -17,7 +17,6 @@ import {  getTopPeople } from "../../services/getPerson"
 import { getPopularSeries, getTopSeries } from "../../services/getSeries";
 
 function Series() {
-  const [series, setSeries] = useState([]);
   const [currentSeriesIndex, setCurrentSeriesIndex] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [topMovies, setTopMovies] = useState([]);
@@ -103,9 +102,6 @@ function Series() {
       {topSeries.length > 0 && <Slider info={topSeries} title={"Top Séries"} type="series"/>}
       {popularSeries.length > 0 && (
         <Slider info={popularSeries} title={"Séries Populares"} type="series" />
-      )}
-      {topPeople.length > 0 && (
-        <Slider info={topPeople} title={"Melhores Artistas"} type="person" />
       )}
     </>
   );

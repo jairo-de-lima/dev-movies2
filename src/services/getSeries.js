@@ -29,3 +29,9 @@ export async function getPopularSeries() {
   } = await api.get("/tv/popular");
   return results;
 }
+export async function getAringsToday() {
+  const {
+    data: { results },
+  } = await api.get("/tv/airing_today");
+  return results;
+}

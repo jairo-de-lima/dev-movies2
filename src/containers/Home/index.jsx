@@ -12,9 +12,9 @@ import Button from "../../components/Button";
 import Slider from "../../components/Slider";
 import { getImages } from "../../../utils/getImages";
 import Modal from "../../components/Modal";
-import { getMovies, getTopMovies } from "../../services/getData";
+import { getMovies, getTopMovies, getMovieReleases } from "../../services/getData";
 import {  getTopPeople } from "../../services/getPerson"
-import { getTopSeries, getPopularSeries } from "../../services/getSeries";
+import { getTopSeries, getPopularSeries, getAringsToday } from "../../services/getSeries";
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -24,6 +24,8 @@ function Home() {
   const [topSeries, setTopSeries] = useState([]);
   const [popularSeries, setPopularSeries] = useState([]);
   const [topPeople, setTopPeople] = useState([]);
+  const [movieReleases, setMovieReleases] = useState([]);
+  const [aringsToday, setAringsToday] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,12 +37,16 @@ function Home() {
           topSeriesData,
           popularSeriesData,
           topPeopleData,
+          movieReleasesData,
+          aringsTodayData,
         ] = await Promise.all([
           getMovies(),
           getTopMovies(),
           getTopSeries(),
           getPopularSeries(),
           getTopPeople(),
+          getMovieReleases(),
+          getAringsToday(),
         ]);
 
         setMovies(moviesData);
@@ -48,6 +54,9 @@ function Home() {
         setTopSeries(topSeriesData); 
         setPopularSeries(popularSeriesData); 
         setTopPeople(topPeopleData); 
+        setMovieReleases(movieReleasesData);
+        setAringsToday(aringsTodayData);
+        console.log(aringsTodayData)
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
       }
@@ -95,12 +104,14 @@ function Home() {
           </Box>
         </Background>
       )}
-
-      {topMovies.length > 0 && <Slider info={topMovies} title={"Top Filmes"} type="movie" />}
-      {topSeries.length > 0 && <Slider info={topSeries} title={"Top Séries"} type="series" />}
+      {movieReleases.length > 0 && <Slider info={movieReleases} title={"Lançamentos"} type="movie" />}
+      {topMovies.length > 0 && <Slider info={topMovies} title={"Melhores Filmes"} type="movie" />}
+      {topSeries.length > 0 && <Slider info={topSeries} title={"Melhores Séries"} type="series" />}
       {popularSeries.length > 0 && (
         <Slider info={popularSeries} title={"Séries Populares"} type="series" />
       )}
+      {aringsToday.length > 0 && <Slider info={aringsToday} title={"Series Em Exibição"} type="series" />}
+
       {topPeople.length > 0 && (
         <Slider info={topPeople} title={"Melhores Artistas"} type="person"/>
       )}

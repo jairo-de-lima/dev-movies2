@@ -5,7 +5,8 @@ import {
   getSerieById,
   getSerieCredits,
   getSerieVideos,
-  getPopularSeries
+  getPopularSeries,
+  getAringsToday
 } from "../../services/getSeries";
 import { getImages } from "../../../utils/getImages";
 import SpanGenres from "../SpanGenres/index";
@@ -18,6 +19,7 @@ function DetailSerie() {
   const [credits, setCredits] = useState([]);
   const [similar, setSimilar] = useState([]);
   const [videos, setVideos] = useState([]);
+  const [airingsToday, setAiringsToday] = useState([]);
 
   useEffect(() => {
     async function getAllData() {
@@ -25,13 +27,15 @@ function DetailSerie() {
         getSerieById(id),
         getSerieVideos(id),
         getSerieCredits(id),
-        getPopularSeries(id)
+        getPopularSeries(id),
+        getAringsToday()
       ])
-        .then(([serie, video, credits, similar]) => {
+        .then(([serie, video, credits, similar, today ]) => {
           setSerie(serie),
             setVideos(video),
             setCredits(credits),
-            setSimilar(similar)
+            setSimilar(similar),
+            setAiringsToday(today)
         })
         .catch((error) => console.error(error));
     }
@@ -67,6 +71,7 @@ function DetailSerie() {
           ))}
       </ContainerMovies>
       {similar && <Slider info={similar} title={"Series Similares"} type="series" />}
+      {airingsToday.length > 0 && <Slider info={airingsToday} title={"Series Em Exibição"} type="series" />}
     </>
   );
 }

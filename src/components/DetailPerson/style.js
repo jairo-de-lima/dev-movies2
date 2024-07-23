@@ -24,7 +24,6 @@ export const Cover = styled.div`
   @media(max-width: 850px){
     img {
       width: 10rem;
-      overflow: hidden;
     }
   }
 
@@ -39,8 +38,8 @@ export const Info = styled.div`
   background: rgba(0, 0, 0, 0.7);
   border-radius: 0.8rem;
   color: white;
-  background-color: #696969;
-
+  background: radial-gradient(circle, rgba(13,13,13,1) 32%, rgba(163,162,162,1) 95%);
+  
   h2 {
     font-size: 2rem;
   }

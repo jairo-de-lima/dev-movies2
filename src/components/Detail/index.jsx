@@ -50,6 +50,7 @@ function Detail() {
           <h2>{movie.title}</h2>
           <SpanGenres genres={movie.genres} />
           <p>{movie.overview}</p>
+          <p>Data de Lançamento: {new Date(movie.release_date).toLocaleDateString('pt-BR')}</p>
           <div>
             <Credits credits={credits} />
           </div>

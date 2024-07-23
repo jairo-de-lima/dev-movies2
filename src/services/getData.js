@@ -13,6 +13,12 @@ export async function getTopMovies() {
   } = await api.get("/movie/top_rated");
   return results;
 }
+export async function getMovieReleases() {
+  const {
+    data: { results },
+  } = await api.get("/movie/now_playing");
+  return results;
+}
 export async function getMovieVideos(movieId) {
   const {
     data: { results },

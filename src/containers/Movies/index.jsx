@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -12,8 +12,7 @@ import Button from "../../components/Button";
 import Slider from "../../components/Slider";
 import { getImages } from "../../../utils/getImages";
 import Modal from "../../components/Modal";
-import { getMovies, getTopMovies } from "../../services/getData";
-import {  getTopPeople } from "../../services/getPerson"
+import { getMovies, getTopMovies, getMovieReleases } from "../../services/getData";
 import { getTopSeries, getPopularSeries } from "../../services/getSeries";
 
 function Movie() {
@@ -22,8 +21,7 @@ function Movie() {
   const [showModal, setShowModal] = useState(false);
   const [topMovies, setTopMovies] = useState([]);
   const [topSeries, setTopSeries] = useState([]);
-  const [popularSeries, setPopularSeries] = useState([]);
-  const [topPeople, setTopPeople] = useState([]);
+ const [movieReleases, setMovieReleases] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,21 +31,18 @@ function Movie() {
           moviesData,
           topMoviesData,
           topSeriesData,
-          popularSeriesData,
-          topPeopleData,
+          movieReleasesData,
         ] = await Promise.all([
           getMovies(),
           getTopMovies(),
           getTopSeries(),
-          getPopularSeries(),
-          getTopPeople(),
+          getMovieReleases()
         ]);
 
         setMovies(moviesData); 
         setTopMovies(topMoviesData);
         setTopSeries(topSeriesData); 
-        setPopularSeries(popularSeriesData); 
-        setTopPeople(topPeopleData); 
+        setMovieReleases(movieReleasesData);
       } catch (error) {
         console.error("Erro ao buscar dados:", error);
       }
@@ -105,15 +100,9 @@ function Movie() {
           </Box>
         </Background>
       )}
-
-      {topMovies.length > 0 && <Slider info={topMovies} title={"Top Filmes"} type="movie" />}
-      {topSeries.length > 0 && <Slider info={topSeries} title={"Top Séries"} type="series"/>}
-      {popularSeries.length > 0 && (
-        <Slider info={popularSeries} title={"Séries Populares"} type="series" />
-      )}
-      {topPeople.length > 0 && (
-        <Slider info={topPeople} title={"Melhores Artistas"} type="person" />
-      )}
+      {movieReleases.length > 0 && <Slider info={movieReleases} title={"Lançamentos"} type="movie" />}
+      {topMovies.length > 0 && <Slider info={topMovies} title={"Melhores Filmes"} type="movie" />}
+      {topSeries.length > 0 && <Slider info={topSeries} title={"Melhores Séries"} type="series" />}
     </>
   );
 }

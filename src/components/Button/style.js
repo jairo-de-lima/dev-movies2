@@ -10,6 +10,7 @@ const buttonStyle = css`
   font-size: 1.2rem;
   font-weight: 500;
   position: relative;
+  margin: 0.5rem;
 
   &:hover {
     background: #fff;
@@ -18,7 +19,8 @@ const buttonStyle = css`
   @media(max-width: 850px){
    font-size: 1rem;
    height: 3rem;
-   padding: 0.5rem;
+   padding: 0.2rem;
+   margin: 0.1rem;
   }
 `;
 

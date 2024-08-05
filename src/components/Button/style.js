@@ -80,3 +80,15 @@ export const ButtonArrow2 = styled.button`
     padding-right: 1.5rem;
   }
 `;
+export const ButtonWatch = styled.button`
+  ${buttonStyle}
+  background: #ff4500;
+  border: 0.25rem solid transparent;
+  box-shadow: 0px 0px 0.43rem 0.5rem rgb(255 69 0 / 30%);
+
+  &:hover {
+    box-shadow: 0px 0px 0.43rem 1rem rgb(255 69 0 / 30%);
+    background: #ff4500;
+    color: #fff;
+  }
+`;

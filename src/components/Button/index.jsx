@@ -1,6 +1,12 @@
-import { ButtonRed, ButtonWhite, ButtonArrow, ButtonArrow2 } from "./style";
+import {
+  ButtonRed,
+  ButtonWhite,
+  ButtonArrow,
+  ButtonArrow2,
+  ButtonWatch,
+} from "./style";
 
-function Button({ children, red, arrow, arrow2, ...rest }) {
+function Button({ children, red, arrow, arrow2, watch, ...rest }) {
   return (
     <>
       {red ? (
@@ -9,6 +15,8 @@ function Button({ children, red, arrow, arrow2, ...rest }) {
         <ButtonArrow {...rest}>{children}</ButtonArrow>
       ) : arrow2 ? (
         <ButtonArrow2 {...rest}>{children}</ButtonArrow2>
+      ) : watch ? (
+        <ButtonWatch {...rest}>{children}</ButtonWatch>
       ) : (
         <ButtonWhite {...rest}>{children}</ButtonWhite>
       )}

@@ -10,8 +10,9 @@ import {
 import { getImages } from "../../../utils/getImages";
 import SpanGenres from "../SpanGenres/index";
 import Credits from "../Credits/index";
-import Slider from "../Slider"
-
+import Slider from "../Slider";
+import Button from "../../components/Button"; 
+import MovieEmbed from '../../containers/Embed'; // Adicione a importação do componente MovieEmbed
 
 function Detail() {
   const { id } = useParams();
@@ -19,6 +20,7 @@ function Detail() {
   const [credits, setCredits] = useState([]);
   const [similar, setSimilar] = useState([]);
   const [videos, setVideos] = useState([]);
+  const [showEmbed, setShowEmbed] = useState(false); // Estado para controlar a exibição do embed
 
   useEffect(() => {
     async function getAllData() {
@@ -39,6 +41,14 @@ function Detail() {
     getAllData();
   }, [id]);
 
+  const handleWatchClick = () => {
+    setShowEmbed(true);
+  };
+
+  const handleCloseEmbed = () => {
+    setShowEmbed(false);
+  };
+
   return (
     <>
       {movie && <Background image={getImages(movie.backdrop_path)} />}
@@ -54,6 +64,7 @@ function Detail() {
           <div>
             <Credits credits={credits} />
           </div>
+          <Button watch onClick={handleWatchClick}>Assistir</Button> {/* Botão para assistir */}
         </Info>
       </Container>
       <ContainerMovies>
@@ -64,11 +75,12 @@ function Detail() {
               <iframe
                 src={`https://www.youtube.com/embed/${video.key}`}
                 title="youtube Video Player"
-                
+                allowFullScreen
               ></iframe>
             </div>
           ))}
       </ContainerMovies>
+      {showEmbed && <MovieEmbed type="filme" id={id} onClose={handleCloseEmbed} />} {/* Renderiza o embed se showEmbed for verdadeiro */}
       {similar && <Slider info={similar} title={"Filmes Similares"} type="movie" />}
     </>
   );
